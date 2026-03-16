@@ -139,18 +139,15 @@ const LinkCard = ({ icon: Icon, label, url, index }) => {
 function App() {
   const profileData = {
     name: "Urheberrechtslos",
-    bio: "Kreativ • Rechtslos • Frei ♡ Folge mir auf allen Plattformen!",
-    avatarUrl: "https://images.unsplash.com/photo-1518706016428-64215811367b?crop=entropy&cs=srgb&fm=jpg&q=85&w=400"
+    bio: "Kreativ • Rechtslos • du bist ein penis wenn du das liest",
   };
 
   const socialLinks = [
     { icon: FaInstagram, label: "Instagram", url: "https://instagram.com/Urheberrechtslos" },
     { icon: FaTiktok, label: "TikTok", url: "https://tiktok.com/@Rechtslos" },
-    { icon: FaYoutube, label: "YouTube", url: "https://youtube.com/@KeinUrheber" },
-    { icon: FaTwitter, label: "Twitter / X", url: "https://twitter.com/Urheberrechtslos" },
+    { icon: FaTwitter, label: "Twitter / X", url: "https://twitter.com/@Rechtslos" },
     { icon: SiThreads, label: "Threads", url: "https://threads.net/@Urheberrechtslos" },
-    { icon: FaTwitch, label: "Twitch", url: "https://twitch.tv/Rechtslos" },
-    { icon: FaDiscord, label: "Discord", url: "https://discord.gg/KeinUrheber" },
+    { icon: FaDiscord, label: "Discord", url: "https://discord.gg/Urheberrechtslos" },
     { icon: FaSpotify, label: "Spotify", url: "https://open.spotify.com/user/Urheberrechtslos" },
     { icon: FaTelegram, label: "Telegram", url: "https://t.me/Urheberrechtslos" },
   ];
@@ -199,7 +196,7 @@ function App() {
           transition={{ delay: 1, duration: 0.5 }}
         >
           <p className="footer-text" data-testid="footer">
-            Made with <FaHeart className="footer-heart" /> by Urheberrechtslos
+            Made by Urheberrechtslos
           </p>
         </motion.footer>
       </div>
