@@ -13,9 +13,12 @@ import {
   FaSnapchat,
   FaPinterest,
   FaHeart,
-  FaChevronRight
+  FaChevronRight,
+  FaDownload
 } from "react-icons/fa";
 import { SiThreads } from "react-icons/si";
+
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
 // Heart Particles Component
 const HeartParticles = () => {
@@ -137,6 +140,29 @@ const LinkCard = ({ icon: Icon, label, url, index }) => {
   );
 };
 
+// Download Button Component
+const DownloadButton = () => {
+  const handleDownload = () => {
+    window.open(`${BACKEND_URL}/api/download-source`, '_blank');
+  };
+
+  return (
+    <motion.button
+      onClick={handleDownload}
+      className="download-btn"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 1.2, duration: 0.5 }}
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.95 }}
+      data-testid="download-source-btn"
+    >
+      <FaDownload className="download-btn-icon" />
+      <span>Download Source Code</span>
+    </motion.button>
+  );
+};
+
 // Main App Component
 function App() {
   const profileData = {
@@ -194,6 +220,9 @@ function App() {
             />
           ))}
         </motion.div>
+
+        {/* Download Button */}
+        <DownloadButton />
 
         {/* Footer */}
         <motion.footer 

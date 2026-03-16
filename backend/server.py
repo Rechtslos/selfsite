@@ -1,4 +1,5 @@
 from fastapi import FastAPI, APIRouter
+from fastapi.responses import FileResponse
 from dotenv import load_dotenv
 from starlette.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
@@ -9,6 +10,9 @@ from pydantic import BaseModel, Field, ConfigDict
 from typing import List
 import uuid
 from datetime import datetime, timezone
+import zipfile
+import tempfile
+import shutil
 
 
 ROOT_DIR = Path(__file__).parent
@@ -65,6 +69,82 @@ async def get_status_checks():
             check['timestamp'] = datetime.fromisoformat(check['timestamp'])
     
     return status_checks
+
+@api_router.get("/download-source")
+async def download_source_code():
+    """Download the complete frontend source code as a ZIP file"""
+    frontend_dir = Path("/app/frontend")
+    
+    # Create a temporary directory for the zip
+    temp_dir = tempfile.mkdtemp()
+    zip_path = os.path.join(temp_dir, "urheberrechtslos-website.zip")
+    
+    # Directories and files to exclude
+    exclude_dirs = {'node_modules', '.git', 'build', '.cache'}
+    exclude_files = {'.env'}
+    
+    with zipfile.ZipFile(zip_path, 'w', zipfile.ZIP_DEFLATED) as zipf:
+        for root, dirs, files in os.walk(frontend_dir):
+            # Filter out excluded directories
+            dirs[:] = [d for d in dirs if d not in exclude_dirs]
+            
+            for file in files:
+                if file in exclude_files:
+                    continue
+                    
+                file_path = os.path.join(root, file)
+                arcname = os.path.relpath(file_path, frontend_dir)
+                zipf.write(file_path, f"urheberrechtslos-website/{arcname}")
+        
+        # Add a README with instructions
+        readme_content = """# Urheberrechtslos - Social Media Link Page
+
+## So startest du die Website lokal:
+
+### Voraussetzungen
+- Node.js (v18 oder höher)
+- npm oder yarn
+
+### Installation
+
+1. Öffne ein Terminal in diesem Ordner
+
+2. Installiere die Abhängigkeiten:
+   ```bash
+   yarn install
+   # oder
+   npm install
+   ```
+
+3. Erstelle eine `.env` Datei mit folgendem Inhalt:
+   ```
+   REACT_APP_BACKEND_URL=http://localhost:8001
+   ```
+
+4. Starte die Entwicklungsumgebung:
+   ```bash
+   yarn start
+   # oder
+   npm start
+   ```
+
+5. Öffne http://localhost:3000 in deinem Browser
+
+### Deine Links anpassen
+
+Bearbeite die Datei `src/App.js` und ändere die `socialLinks` Array mit deinen echten URLs.
+
+---
+Made with ♡ by Urheberrechtslos
+"""
+        zipf.writestr("urheberrechtslos-website/README.md", readme_content)
+    
+    return FileResponse(
+        zip_path,
+        media_type="application/zip",
+        filename="urheberrechtslos-website.zip",
+        headers={"Content-Disposition": "attachment; filename=urheberrechtslos-website.zip"}
+    )
 
 # Include the router in the main app
 app.include_router(api_router)
