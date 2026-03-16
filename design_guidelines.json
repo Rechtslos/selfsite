@@ -1,0 +1,128 @@
+{
+  "design_system": {
+    "brand_identity": {
+      "name": "LinkSpace E1",
+      "tone": "Dark Feminine, Cyber-Chic, Connected",
+      "archetype": "The Digital Siren",
+      "aesthetic": "Y2K meets Modern Dark Mode. Glowing, moody, but strictly organized."
+    },
+    "colors": {
+      "palette": {
+        "background": {
+          "primary": "#050505",
+          "secondary": "#0a0a0a",
+          "glass": "rgba(20, 20, 20, 0.6)"
+        },
+        "text": {
+          "primary": "#ffffff",
+          "secondary": "#a1a1aa",
+          "muted": "#52525b"
+        },
+        "brand": {
+          "purple": "#a855f7",
+          "pink": "#ec4899",
+          "red_heart": "#ff0033",
+          "glow": "rgba(236, 72, 153, 0.5)"
+        },
+        "gradients": {
+          "main": "linear-gradient(135deg, #a855f7 0%, #ec4899 100%)",
+          "dark_overlay": "linear-gradient(to bottom, transparent 0%, #050505 100%)",
+          "button_hover": "linear-gradient(90deg, rgba(168, 85, 247, 0.2) 0%, rgba(236, 72, 153, 0.2) 100%)"
+        }
+      },
+      "rules": {
+        "glassmorphism": "backdrop-blur-xl border border-white/10 shadow-2xl",
+        "neon_border": "box-shadow: 0 0 10px rgba(236, 72, 153, 0.3), inset 0 0 0 1px rgba(255, 255, 255, 0.1)"
+      }
+    },
+    "typography": {
+      "font_imports": [
+        "https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700;900&family=Space+Grotesk:wght@400;700&display=swap"
+      ],
+      "family": {
+        "headings": "\"Outfit\", sans-serif",
+        "body": "\"Space Grotesk\", monospace",
+        "accent": "\"Outfit\", sans-serif"
+      },
+      "scale": {
+        "h1": "text-4xl md:text-5xl font-black tracking-tight",
+        "h2": "text-2xl md:text-3xl font-bold tracking-tight",
+        "body": "text-base font-normal leading-relaxed"
+      }
+    },
+    "visual_enhancers": {
+      "radius": {
+        "default": "rounded-2xl",
+        "button": "rounded-full"
+      },
+      "shadows": {
+        "glow": "0 0 20px -5px rgba(236, 72, 153, 0.5)",
+        "glass": "0 8px 32px 0 rgba(0, 0, 0, 0.37)"
+      },
+      "decorations": {
+        "hearts": "Floating animated SVG hearts in background",
+        "noise": "Subtle grain overlay opacity-20 fixed inset-0 pointer-events-none z-50"
+      }
+    },
+    "layout_strategy": {
+      "container": "max-w-md mx-auto min-h-screen relative overflow-hidden",
+      "spacing": "p-6 md:p-8 flex flex-col gap-6",
+      "alignment": "items-center text-center"
+    }
+  },
+  "components": {
+    "Background": {
+      "description": "Layered background with noise, deep color blobs, and floating hearts.",
+      "layers": [
+        "Base: #050505",
+        "Image: https://images.unsplash.com/photo-1756744865076-68e13f28923d?crop=entropy&cs=srgb&fm=jpg&q=85 (Opacity 20%, Blended 'screen')",
+        "Hearts: Animated floating particles"
+      ]
+    },
+    "ProfileHeader": {
+      "structure": "Avatar + Name + Bio + Social Icons Row",
+      "styles": {
+        "avatar_container": "relative w-32 h-32 rounded-full p-1 bg-gradient-to-tr from-purple-500 to-pink-500",
+        "avatar_image": "rounded-full w-full h-full object-cover border-4 border-black",
+        "name": "text-3xl font-black text-white mt-4 drop-shadow-lg",
+        "bio": "text-white/60 text-sm mt-2 max-w-[80%]"
+      },
+      "assets": {
+        "profile_image": "https://images.unsplash.com/photo-1518706016428-64215811367b?crop=entropy&cs=srgb&fm=jpg&q=85"
+      }
+    },
+    "LinkCard": {
+      "base_component": "Card (Shadcn)",
+      "customization": "bg-black/40 backdrop-blur-md border-white/10 hover:border-pink-500/50 hover:bg-white/5 transition-all duration-300 group cursor-pointer active:scale-95",
+      "content_layout": "flex items-center justify-between p-4",
+      "icon_style": "text-2xl text-pink-400 group-hover:text-pink-300 group-hover:scale-110 transition-transform",
+      "text_style": "font-medium text-white tracking-wide group-hover:text-pink-200"
+    },
+    "SocialRow": {
+      "layout": "flex gap-4 justify-center mt-4",
+      "item": "text-white/50 hover:text-pink-500 transition-colors text-xl p-2 hover:bg-white/5 rounded-full"
+    }
+  },
+  "image_urls": {
+    "background_texture": "https://images.unsplash.com/photo-1756744865076-68e13f28923d?crop=entropy&cs=srgb&fm=jpg&q=85",
+    "profile_placeholder": "https://images.unsplash.com/photo-1518706016428-64215811367b?crop=entropy&cs=srgb&fm=jpg&q=85"
+  },
+  "universal_guidelines": [
+    "Do NOT use standard HTML <button> tags. Use the custom LinkCard component.",
+    "Ensure all interactive elements have hover states that include a subtle scale or brightness shift.",
+    "The 'Red Hearts' must be implemented as a background animation or subtle floating elements, NOT as static clip-art.",
+    "Use 'Outfit' font for all headings to maintain the modern/creative vibe.",
+    "Dark mode is mandatory. Do not create a light mode toggle.",
+    "Use 'react-icons' for all social logos (FaInstagram, FaTwitter, etc.).",
+    "Add 'data-testid' to all links for testing."
+  ],
+  "instructions_to_main_agent": [
+    "1. Install 'framer-motion' for smooth entrance animations and heart floating effects.",
+    "2. Install 'react-icons' for the social media icons.",
+    "3. Update 'index.html' to include the Google Fonts import.",
+    "4. Create a 'HeartParticles' component that generates random floating hearts in the background.",
+    "5. Build the main layout in 'App.js' using the 'ProfileHeader' and a mapped list of 'LinkCard' components.",
+    "6. Use the provided Unsplash URLs for the background and profile picture.",
+    "7. Ensure the mobile view is perfect (this is a link-in-bio app, mostly viewed on phones)."
+  ]
+}
