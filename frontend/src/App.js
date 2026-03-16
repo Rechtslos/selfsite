@@ -6,19 +6,14 @@ import {
   FaTiktok, 
   FaYoutube, 
   FaTwitter, 
-  FaFacebook,
   FaTwitch,
   FaDiscord,
   FaSpotify,
-  FaSnapchat,
-  FaPinterest,
+  FaTelegram,
   FaHeart,
-  FaChevronRight,
-  FaDownload
+  FaChevronRight
 } from "react-icons/fa";
 import { SiThreads } from "react-icons/si";
-
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
 // Heart Particles Component
 const HeartParticles = () => {
@@ -140,29 +135,6 @@ const LinkCard = ({ icon: Icon, label, url, index }) => {
   );
 };
 
-// Download Button Component
-const DownloadButton = () => {
-  const handleDownload = () => {
-    window.open(`${BACKEND_URL}/api/download-source`, '_blank');
-  };
-
-  return (
-    <motion.button
-      onClick={handleDownload}
-      className="download-btn"
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 1.2, duration: 0.5 }}
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.95 }}
-      data-testid="download-source-btn"
-    >
-      <FaDownload className="download-btn-icon" />
-      <span>Download Source Code</span>
-    </motion.button>
-  );
-};
-
 // Main App Component
 function App() {
   const profileData = {
@@ -180,9 +152,7 @@ function App() {
     { icon: FaTwitch, label: "Twitch", url: "https://twitch.tv/Rechtslos" },
     { icon: FaDiscord, label: "Discord", url: "https://discord.gg/KeinUrheber" },
     { icon: FaSpotify, label: "Spotify", url: "https://open.spotify.com/user/Urheberrechtslos" },
-    { icon: FaSnapchat, label: "Snapchat", url: "https://snapchat.com/add/Rechtslos" },
-    { icon: FaPinterest, label: "Pinterest", url: "https://pinterest.com/KeinUrheber" },
-    { icon: FaFacebook, label: "Facebook", url: "https://facebook.com/Urheberrechtslos" },
+    { icon: FaTelegram, label: "Telegram", url: "https://t.me/Urheberrechtslos" },
   ];
 
   return (
@@ -220,9 +190,6 @@ function App() {
             />
           ))}
         </motion.div>
-
-        {/* Download Button */}
-        <DownloadButton />
 
         {/* Footer */}
         <motion.footer 

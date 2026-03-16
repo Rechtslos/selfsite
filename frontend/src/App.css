@@ -29,20 +29,48 @@
 .content-container {
   position: relative;
   z-index: 10;
+  width: 100%;
   max-width: 28rem;
   margin: 0 auto;
-  padding: 2rem 1.5rem;
+  padding: 2rem 1rem;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
+@media (min-width: 640px) {
+  .content-container {
+    padding: 3rem 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .content-container {
+    max-width: 32rem;
+    padding: 4rem 2rem;
+  }
+}
+
 /* Profile section */
 .profile-avatar-wrapper {
   position: relative;
-  width: 8rem;
-  height: 8rem;
+  width: 6rem;
+  height: 6rem;
+}
+
+@media (min-width: 640px) {
+  .profile-avatar-wrapper {
+    width: 8rem;
+    height: 8rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .profile-avatar-wrapper {
+    width: 9rem;
+    height: 9rem;
+  }
 }
 
 .profile-avatar-ring {
@@ -86,13 +114,26 @@
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 1rem;
-  padding: 1rem 1.25rem;
+  padding: 0.875rem 1rem;
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0.75rem;
   transition: all 0.3s ease;
   cursor: pointer;
   text-decoration: none;
+}
+
+@media (min-width: 640px) {
+  .link-card {
+    padding: 1rem 1.25rem;
+    gap: 1rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .link-card {
+    padding: 1.125rem 1.5rem;
+  }
 }
 
 .link-card:hover {
@@ -107,9 +148,16 @@
 }
 
 .link-card-icon {
-  font-size: 1.75rem;
+  font-size: 1.5rem;
   color: #ec4899;
   transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+@media (min-width: 640px) {
+  .link-card-icon {
+    font-size: 1.75rem;
+  }
 }
 
 .link-card:hover .link-card-icon {
@@ -121,9 +169,15 @@
   flex: 1;
   font-weight: 500;
   color: white;
-  font-size: 1rem;
+  font-size: 0.9rem;
   letter-spacing: 0.025em;
   transition: color 0.3s ease;
+}
+
+@media (min-width: 640px) {
+  .link-card-text {
+    font-size: 1rem;
+  }
 }
 
 .link-card:hover .link-card-text {
@@ -193,34 +247,4 @@
   50% {
     transform: scale(1.2);
   }
-}
-
-/* Download button */
-.download-btn {
-  margin-top: 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.75rem;
-  padding: 0.875rem 1.5rem;
-  background: linear-gradient(135deg, rgba(168, 85, 247, 0.2) 0%, rgba(236, 72, 153, 0.2) 100%);
-  border: 1px solid rgba(236, 72, 153, 0.4);
-  border-radius: 9999px;
-  color: #f9a8d4;
-  font-weight: 600;
-  font-size: 0.875rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  text-decoration: none;
-}
-
-.download-btn:hover {
-  background: linear-gradient(135deg, rgba(168, 85, 247, 0.3) 0%, rgba(236, 72, 153, 0.3) 100%);
-  border-color: rgba(236, 72, 153, 0.6);
-  box-shadow: 0 0 20px rgba(236, 72, 153, 0.3);
-  color: white;
-}
-
-.download-btn-icon {
-  font-size: 1rem;
 }
