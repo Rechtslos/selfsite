@@ -139,7 +139,7 @@ function App() {
   const profileData = {
     name: "Urheberrechtslos",
     bio: "Kreativ • Rechtslos",
-    avatarUrl: "https://i.imgur.com/YOUR_IMAGE.jpg" // Ersetze mit deinem Bild
+    avatarUrl: "https://customer-assets.emergentagent.com/job_media-bridge-17/artifacts/6x6qo7sn_WhatsApp%20Image%202026-03-10%20at%2021.57.31.jpeg"
   };
 
   const socialLinks = [
