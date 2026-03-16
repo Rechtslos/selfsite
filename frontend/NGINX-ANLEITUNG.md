@@ -1,70 +1,66 @@
 # Nginx Hosting Anleitung - Urheberrechtslos
 
-## Schnell-Anleitung
+## Super-Schnell-Anleitung (3 Schritte)
 
-### 1. Build-Ordner hochladen
-Lade den kompletten `build/` Ordner auf deinen Server hoch nach:
-```
-/var/www/urheberrechtslos/
-```
-
-### 2. Nginx Config kopieren
-Kopiere `nginx.conf` nach:
+### 1. ZIP entpacken nach /var/www/urheberrechtslos/
 ```bash
-sudo cp nginx.conf /etc/nginx/sites-available/urheberrechtslos
+sudo mkdir -p /var/www/urheberrechtslos
+sudo unzip urheberrechtslos-nginx-ready.zip -d /var/www/urheberrechtslos/
 ```
 
-### 3. Symlink erstellen
+### 2. Nginx Config aktivieren
 ```bash
+sudo cp /var/www/urheberrechtslos/nginx.conf /etc/nginx/sites-available/urheberrechtslos
 sudo ln -s /etc/nginx/sites-available/urheberrechtslos /etc/nginx/sites-enabled/
 ```
 
-### 4. Domain anpassen
-Bearbeite `/etc/nginx/sites-available/urheberrechtslos` und ersetze:
+### 3. Nginx neustarten
+```bash
+sudo nginx -t && sudo systemctl reload nginx
 ```
-server_name localhost;
+
+**Fertig!** Deine Website läuft jetzt unter http://localhost (oder deine Server-IP)
+
+---
+
+## Domain einrichten
+
+Bearbeite die nginx config:
+```bash
+sudo nano /etc/nginx/sites-available/urheberrechtslos
 ```
-mit deiner Domain:
+
+Ändere `server_name localhost;` zu:
 ```
 server_name deine-domain.de www.deine-domain.de;
 ```
 
-### 5. Nginx testen & neustarten
+Dann:
 ```bash
-sudo nginx -t
-sudo systemctl reload nginx
+sudo nginx -t && sudo systemctl reload nginx
 ```
 
 ---
 
-## Mit SSL (HTTPS) - Empfohlen!
+## SSL (HTTPS) aktivieren - Empfohlen!
 
-### Certbot installieren
 ```bash
 sudo apt install certbot python3-certbot-nginx
+sudo certbot --nginx -d deine-domain.de
 ```
-
-### SSL Zertifikat holen
-```bash
-sudo certbot --nginx -d deine-domain.de -d www.deine-domain.de
-```
-
-Certbot passt die nginx config automatisch an.
 
 ---
 
-## Ordnerstruktur auf dem Server
+## Ordnerstruktur nach dem Entpacken
 
 ```
 /var/www/urheberrechtslos/
-├── index.html
+├── index.html          ← Hauptseite
 ├── static/
-│   ├── css/
-│   │   └── main.xxxxx.css
-│   └── js/
-│       └── main.xxxxx.js
-├── favicon.ico
-└── manifest.json
+│   ├── css/main.xxx.css
+│   └── js/main.xxx.js
+├── nginx.conf          ← Nginx Konfiguration
+└── NGINX-ANLEITUNG.md  ← Diese Datei
 ```
 
 ---
@@ -77,9 +73,10 @@ sudo chown -R www-data:www-data /var/www/urheberrechtslos
 sudo chmod -R 755 /var/www/urheberrechtslos
 ```
 
-**Seite nicht gefunden bei Refresh?**
-Stelle sicher, dass `try_files $uri $uri/ /index.html;` in der nginx config ist.
+**Nginx startet nicht?**
+```bash
+sudo nginx -t   # Zeigt Fehler an
+```
 
 ---
-
-Made with ♡ by Urheberrechtslos
+Made with ♡
