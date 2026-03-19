@@ -138,17 +138,17 @@ const LinkCard = ({ icon: Icon, label, url, index }) => {
 function App() {
   const profileData = {
     name: "Urheberrechtslos",
-    bio: "Kreativ • Rechtslos",
+    bio: "Kreativ • Rechtslos | Creative • Lawless",
     avatarUrl: "https://customer-assets.emergentagent.com/job_media-bridge-17/artifacts/6x6qo7sn_WhatsApp%20Image%202026-03-10%20at%2021.57.31.jpeg"
   };
 
   const socialLinks = [
     { icon: FaInstagram, label: "Instagram", url: "https://instagram.com/Urheberrechtslos" },
-    { icon: FaLock, label: "Privat Instagram", url: "https://instagram.com/jennx.420", isPrivate: true },
+    { icon: FaLock, label: "Privat Instagram | Private", url: "https://instagram.com/jennx.420", isPrivate: true },
     { icon: FaTiktok, label: "TikTok", url: "https://tiktok.com/@Rechtslos" },
     { icon: FaTwitter, label: "Twitter / X", url: "https://twitter.com/Rechtslos" },
     { icon: SiThreads, label: "Threads", url: "https://threads.net/@Urheberrechtslos" },
-    { icon: FaLock, label: "Privat Threads", url: "https://threads.net/@Jennx.420", isPrivate: true },
+    { icon: FaLock, label: "Privat Threads | Private", url: "https://threads.net/@Jennx.420", isPrivate: true },
     { icon: FaDiscord, label: "Discord", url: "https://discord.gg/Urheberrechtslos" },
     { icon: FaSpotify, label: "Spotify", url: "https://open.spotify.com/user/Urheberrechtslos" },
     { icon: FaTelegram, label: "Telegram", url: "https://t.me/Urheberrechtslos" },
@@ -198,7 +198,7 @@ function App() {
           transition={{ delay: 1, duration: 0.5 }}
         >
           <p className="footer-text" data-testid="footer">
-            Made with <FaHeart className="footer-heart" /> by Urheberrechtslos
+            Erstellt mit | Made with <FaHeart className="footer-heart" /> by Urheberrechtslos
           </p>
         </motion.footer>
       </div>
